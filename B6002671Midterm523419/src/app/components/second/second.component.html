@@ -1,0 +1,140 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">2nd: Product ReactiveForm</h4>
+        <div class="row">
+            <div class="col-md-8">
+                <form [formGroup]="productForm">
+                    <div class="card">
+                        <div class="card-header">
+                            Product Form
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Product Type: 
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="type" >
+                                          <option *ngFor="let person of productType; let i = index" value="{{person}}">{{person}}</option>
+                                        </select>
+                                      </div>
+                                </div>
+                                <!-- <li *ngFor="let person of people; let i = index"> (1)
+                                    {{ i + 1 }} - {{ person.name }} (2)
+                                  </li>                              -->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Product ID:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName='Pid'>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Product Name:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName='Pname'>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Product Detail:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName='Pdetail'>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Quantity:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName='Qu'>
+                                        <div *ngIf="Qu.invalid && (Qu.dirty || Qu.touched)" class="alert alert-danger">
+                                            <div *ngIf="Qu.errors.required">
+                                                Quantity is required.
+                                            </div>
+
+                                              <div *ngIf="Qu.errors.max || Qu.errors.min ">
+                                                Quantity is incorrect (1-50)!!
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Price:
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName='Price'>
+                                        <div *ngIf="Price.invalid && (Price.dirty || Price.touched)" class="alert alert-danger">
+                                            <div *ngIf="Price.errors.required">
+                                                Price is required.
+                                            </div>
+
+                                              <div *ngIf="Price.errors.max || Price.errors.min ">
+                                                Price is incorrect (1-100000)!!
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary" (click)="addProduct()">Add</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="reset" class="btn btn-danger">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Display
+                    </div>
+                    <div class="card-body">
+                        Form Value: {{productForm.value|json}}
+                        <br/><br/>
+                        Form Status: {{check()}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+<div class="card">
+    <div class="card-header">
+        โจทย์ส่วนที่ 2 (17 คะแนน)
+    </div>
+    <div class="card-body">
+        <ul>
+            <li>(3 คะแนน) Product Type : สามาถรับข้อมูลจากผู้ใช้งานในรูปแบบ Dynamic select list ด้วย *ngFor โดยดึงข้อมูลจาก productType ได้</li>
+            <li>(1 คะแนน) Product ID : สามาถรับข้อมูลจากผู้ใช้งานได้  เงื่อนไข คือ ผู้ใช้งานจำเป็นต้องกรอก</li>
+            <li>(1 คะแนน) Product Name : สามาถรับข้อมูลจากผู้ใช้งานได้ เงื่อนไข คือ ผู้ใช้งานจำเป็นต้องกรอก</li>
+            <li>(1 คะแนน) Product Detail : สามาถรับข้อมูลจากผู้ใช้งานได้ เงื่อนไข คือ ผู้ใช้งานจำเป็นต้องกรอก</li>
+            <li>(5 คะแนน) Quantity : สามาถรับข้อมูลจากผู้ใช้งานได้ เงื่อนไข คือ ผู้ใช้งานจำเป็นต้องกรอก และผู้ใช้จะต้องกรอกตัวเลขตั้งแต่ 1 - 50 เท่านั้น ถ้าไม่เข้าเงื่อนไขแสดง alert ดังตัวอย่าง</li>
+            <li>(2 คะแนน) Price : สามาถรับข้อมูลจากผู้ใช้งานได้ เงื่อนไข คือ ผู้ใช้งานจำเป็นต้องกรอก และผู้ใช้จะต้องกรอกตัวเลขตั้งแต่ 1 - 100000 เท่านั้น</li>
+            <li>(3 คะแนน) Add (button) : สามารถเพิ่มสินค้าใหม่ (push) เข้าไปในพร็อพเพอร์ตี้ products ที่อยู่ใน ProductService ได้ </li>
+            <li>(1 คะแนน) Display : สามารถแสดงข้อมูลที่ผู้ใช้งานกรอกจาก Product Form พร้อมกับบอกสถานะ (status) ของ Form ได้</li>
+          </ul>
+    </div>
+</div>
+<br/>
